@@ -1,0 +1,7 @@
+[flake8]
+# exclude : 파일들을 제외해줘. (하단 아래는 직접 관리를 하기위하여 제외 시킴.)
+exclude = 
+    migrations,
+    __pycache__,
+    manage.py,
+    settings.py
