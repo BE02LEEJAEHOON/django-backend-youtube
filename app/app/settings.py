@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_SYSTEM_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
 ]
+
+CUSTOM_USER_APPS = [
+    'users.apps.UsersConfig',
+]
+
+
+INSTALLED_APPS = CUSTOM_USER_APPS + DJANGO_SYSTEM_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,3 +134,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django의 Custom UserModel - 기존 장고의 유저 인증 기능을 가져옴
+AUTH_USER_MODEL = 'users.User' # user 폴더의 User 모델
