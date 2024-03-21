@@ -1,3 +1,29 @@
 from django.shortcuts import render
+from rest_framework.views import  APIView 
+from rest_framework.response import Response
+from .serializers import SubSerializer
+# 구독 관련 REST API
 
-# Create your views here.
+# SubscriptionList
+# api/v1/subscription
+# [POST] : 구독 하기
+class SubscriptionList(APIView):
+    def post(self, request):
+        user_data = request.data # json -> object
+        serializer = SubSerializer(data=user_data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(subscriber=request.user)
+        
+        return Response(serializer.data, 201)
+
+# SubscriptionDetail
+# api/v1/subscription/{user_id}
+# [GET] : 특정 유저의 구독자 리스트 조회
+# [DELETE] : 구독 취소
+class SubscriptionDetail(APIView):
+    def get(self, reqeust):
+        pass
+    
+    def delete(self, request):
+        pass
+
