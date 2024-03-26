@@ -15,18 +15,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'password123')
+DEBUG = bool(int(os.environ.get('DEBUG', 0))) # python 에서 0은 False
+ALLOWED_HOSTS = ['*'] # ec-2-123-123-123
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-isvz+(wc*5b=)b6^k-x1^wlfvo&*d9&(fu^9x*&q7#we+)6vy1'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# EC2 : Git, Docker Install -> docker-compose-deploy up
 
 # Application definition
 
@@ -41,12 +34,16 @@ DJANGO_SYSTEM_APPS = [
 ]
 
 CUSTOM_USER_APPS = [
+    'daphne',
     'users.apps.UsersConfig',
     'videos.apps.VideosConfig',
     'comments.apps.CommentsConfig',
     'subscriptions.apps.SubscriptionsConfig',
+    'reactions.apps.ReactionsConfig',
     'rest_framework',
     'drf_spectacular',
+    'channels',
+	'chat.apps.ChatConfig',
 ]
 
 
@@ -80,7 +77,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
@@ -148,4 +144,15 @@ AUTH_USER_MODEL = 'users.User' # user 폴더의 User 모델
 # drf_spectacular 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Channels를 사용하기 위한 설정
+ASGI_APPLICATION = 'app.route.application' # Socket (비동기 처리) + HTTP (동기 처리)
+WSGI_APPLICATION = 'app.wsgi.application' # HTTP Base - REST API (동기 처리)
+
+# Channels 설정
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
 }
