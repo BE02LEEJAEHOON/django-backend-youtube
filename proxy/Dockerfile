@@ -2,7 +2,7 @@
 # Nginx와 관련 파일들을 컨테이너 안에 설정합니다. 환경 변수 설정, Nginx 실행에 필요한 파일 복사 및 권한 설정 등을 포함합니다.
 
 FROM nginxinc/nginx-unprivileged:1-alpine
-LABEL maintainer="seopftware"
+LABEL maintainer="2zidol"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
 COPY ./uwsgi_params /etc/nginx/uwsgi_params
