@@ -158,8 +158,8 @@ CHANNEL_LAYERS = {
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_URL = '/static/static'
-MEDIA_URL = '/static/media'
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
 
 MEDIA_ROOT = '/vol/web/media'
 STATIC_ROOT = '/vol/web/static'

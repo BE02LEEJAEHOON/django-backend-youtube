@@ -1,5 +1,6 @@
 # 1일차
-## 프로젝트 세팅
+## 프로젝트 세팅 
+교재링크 : https://visioneer.notion.site/Project1_Youtube-988b009559144545aa7e2ab4eb354d6c
 ### 1. Github
 - 레포지토리 생성
 - 로컬에 있는 내 컴퓨터 폴더와 github의 remote 공간 연결 진행
